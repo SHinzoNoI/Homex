@@ -1,0 +1,120 @@
+﻿[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 1194 modules transformed.
+node.exe : 
+[31mx[39m Build 
+failed in 2.25s
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ([31mx[39   
+ m Build failed in    
+ 2.25s:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+[31merror during 
+build:
+[31msrc/pages/AdminDa
+shboard.jsx (5:30): 
+"updateOrder" is not 
+exported by "src/servi
+ces/api.js", imported 
+by "src/pages/AdminDas
+hboard.jsx".[31m
+file: [36mD:/homex/cl
+ient/src/pages/AdminDa
+shboard.jsx:5:30[31m
+[33m
+3: import { motion, 
+AnimatePresence } 
+from 'framer-motion';
+4: import { 
+AreaChart, Area, 
+XAxis, YAxis, 
+CartesianGrid, 
+Tooltip, 
+ResponsiveContainer, 
+BarChart, Bar } from 
+'recharts';
+5: import { getStats, 
+getOrders, 
+updateOrder, 
+getProducts, 
+createProduct, 
+updateProduct, 
+deleteProduct } from 
+'../servic...
+                      
+           ^
+6: import toast from 
+'react-hot-toast';
+[31m
+    at getRollupError 
+(file:///D:/homex/clie
+nt/node_modules/rollup
+/dist/es/shared/parseA
+st.js:402:41)
+    at error (file:///
+D:/homex/client/node_m
+odules/rollup/dist/es/
+shared/parseAst.js:398
+:42)
+    at Module.error (f
+ile:///D:/homex/client
+/node_modules/rollup/d
+ist/es/shared/node-ent
+ry.js:17040:16)
+    at 
+Module.traceVariable (
+file:///D:/homex/clien
+t/node_modules/rollup/
+dist/es/shared/node-en
+try.js:17452:29)
+    at ModuleScope.fin
+dVariable (file:///D:/
+homex/client/node_modu
+les/rollup/dist/es/sha
+red/node-entry.js:1507
+0:39)
+    at FunctionScope.f
+indVariable (file:///D
+:/homex/client/node_mo
+dules/rollup/dist/es/s
+hared/node-entry.js:56
+73:38)
+    at FunctionBodySco
+pe.findVariable (file:
+///D:/homex/client/nod
+e_modules/rollup/dist/
+es/shared/node-entry.j
+s:5673:38)
+    at ReturnValueScop
+e.findVariable (file:/
+//D:/homex/client/node
+_modules/rollup/dist/e
+s/shared/node-entry.js
+:5673:38)
+    at FunctionBodySco
+pe.findVariable (file:
+///D:/homex/client/nod
+e_modules/rollup/dist/
+es/shared/node-entry.j
+s:5673:38)
+    at 
+Identifier.bind (file:
+///D:/homex/client/nod
+e_modules/rollup/dist/
+es/shared/node-entry.j
+s:5447:40)[39m
