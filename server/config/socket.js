@@ -45,7 +45,9 @@ function initSocket(server) {
 }
 
 function getIO() {
-  if (!io) throw new Error('Socket.io not initialized');
+  // On Vercel (serverless), Socket.io is not initialised — return null
+  // so callers can safely guard: const io = getIO(); if (io) io.emit(...)
+  if (!io) return null;
   return io;
 }
 

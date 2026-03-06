@@ -17,15 +17,17 @@ app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 // https://homex.vercel.app,https://homex.up.railway.app
 app.use(cors({
   origin: (origin, callback) => {
-    const allowed = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
-      .split(',')
-      .map(o => o.trim());
+    // On Vercel / production: allow all origins unless CLIENT_ORIGIN is explicitly set (not wildcard)
+    const rawOrigin = process.env.CLIENT_ORIGIN || '*';
+    const allowed = rawOrigin.split(',').map(o => o.trim());
     if (!origin || allowed.includes('*') || allowed.includes(origin)) {
       return callback(null, true);
     }
     callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
@@ -33,8 +35,12 @@ app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(rateLimiter);
 
 // ── Socket.io ───────────────────────────────────────────────────────────────
-const { initSocket } = require('./config/socket');
-initSocket(server);
+// Vercel serverless functions are stateless — Socket.io requires persistent
+// connections which are not supported. Skip in serverless env.
+if (!process.env.VERCEL) {
+  const { initSocket } = require('./config/socket');
+  initSocket(server);
+}
 
 // ── Routes ──────────────────────────────────────────────────────────────────
 app.use('/api/auth', require('./routes/auth'));
